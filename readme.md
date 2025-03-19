@@ -110,16 +110,16 @@ Mit Dateien ohne Leerzeichen macht man alles richtig.
 
 ## Changelog
 
-28.05.2024 erstellt werden ini Dateien, damit kein doppelten txt Dateien vorkommen, die User verwirren könnten.
-29.05.2024 Dateien in "%USERPROFILE%\\Documents#justxt" werden irgendwie nicht gefunden. Statt dessen wird OneDrive genutzt. Verwirrend.
-30.05.2024 Auch in OneDrive wird nix gefunden. Also bleibt doch alles in dem Verzeichnis.
-04.06.2024 statt .dat statt .ini, weil die Ikone dann komplett weiß ist und .cmd besser heraussticht ist.
-05.06.2024 die .dat werden versteckt
-17.06.2024 nach einigen Tagen Test verabschiede ich mich von der Idee die Datenamen mit "#" zu beginnen und die Dateien dann über das Startmenü und "#" schnell finden zu können. Es hat einfach nicht so funktioniert. Somit lässt sich die Idee, darüber so eine Art Schnellzugriff auf einzelne Textschnipsel zu erschaffen, nicht umsetzen.
-12.12.2024 Laut "clip /?" kann Text mittels "clip < text.txt" in die Zwischenablage kopiert werden. Der kleine Umweg über "type %0|clip" kann damit entfallen.
-30.01.2025 Neu ist der Ordner GruppenSkripte, in dem Organisationen Skripte zur Verfügung stellen können.
-07.02.2025 Neu ist der Ordner BeispielSkripte, in dem verschiedene Beispiele enthalten sind.
-07.02.2025 Neu ist je eine Setupdatei, die eine Verknüpfung ins Startmenü oder in den Autostart Ordner des angemeldeten Users kopiert.
-14.02.2025 Neue Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in .ini Dateien verarbeitet werden.
-25.02.2025 Beispiele überarbeitet
-10.03.2025 Lösungsansatz mittels Powershell eingefügt
+28.05.2024 erstellt werden ini Dateien, damit kein doppelten txt Dateien vorkommen, die User verwirren könnten.  
+29.05.2024 Dateien in "%USERPROFILE%\\Documents#justxt" werden irgendwie nicht gefunden. Statt dessen wird OneDrive genutzt. Verwirrend.  
+30.05.2024 Auch in OneDrive wird nix gefunden. Also bleibt doch alles in dem Verzeichnis.  
+04.06.2024 statt .dat statt .ini, weil die Ikone dann komplett weiß ist und .cmd besser heraussticht ist.  
+05.06.2024 die .dat werden versteckt  
+17.06.2024 nach einigen Tagen Test verabschiede ich mich von der Idee die Datenamen mit "#" zu beginnen und die Dateien dann über das Startmenü und "#" schnell finden zu können. Es hat einfach nicht so funktioniert. Somit lässt sich die Idee, darüber so eine Art Schnellzugriff auf einzelne Textschnipsel zu erschaffen, nicht umsetzen.  
+12.12.2024 Laut "clip /?" kann Text mittels "clip < text.txt" in die Zwischenablage kopiert werden. Der kleine Umweg über "type %0|clip" kann damit entfallen.  
+30.01.2025 Neu ist der Ordner GruppenSkripte, in dem Organisationen Skripte zur Verfügung stellen können.  
+07.02.2025 Neu ist der Ordner BeispielSkripte, in dem verschiedene Beispiele enthalten sind.  
+07.02.2025 Neu ist je eine Setupdatei, die eine Verknüpfung ins Startmenü oder in den Autostart Ordner des angemeldeten Users kopiert.  
+14.02.2025 Neue Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in .ini Dateien verarbeitet werden.  
+25.02.2025 Beispiele überarbeitet  
+10.03.2025 Lösungsansatz mittels Powershell eingefügt  
