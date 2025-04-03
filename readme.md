@@ -90,7 +90,8 @@ Die clip.exe funktioniert auf der Windows-Kommandozeile. Dort gilt ein anderer, 
 Das ist sicher die größte Einschränkung. In manchen Fällen hilft ein Blick auf https://www.openthesaurus.de/ um Wörter ohne Umlaute zu finden.
 
 Das Umlautproblem ließe sich mittels Powershell lösen:
-`# Holen Sie den Skriptpfad
+```powershell
+# Holen Sie den Skriptpfad
 $scriptPath = $MyInvocation.MyCommand.Path
 # Extrahieren Sie den Verzeichnispfad
 $directoryPath = [System.IO.Path]::GetDirectoryName($scriptPath)
@@ -101,8 +102,10 @@ $filePath = "$directoryPath\$scriptNameWithoutExtension.txt"
 # Textdatei einlesen
 $text = Get-Content -Path $filePath -Encoding String
 # Kopieren des Inhalts in die Zwischenablage
-Set-Clipboard -Value $text`
-Doch ein Powershell-Skript lässt sich nicht einfach mittels Doppelklick starten.
+Set-Clipboard -Value $text
+```
+
+Doch ein Powershell-Skript lässt sich nicht einfach mittels Doppelklick starten. Damit ist die Usability dahin.
 
 Leerzeichen im Dateinamen von Textdateien (GruppenTexte und MeineTexte) funktionieren nicht - die Programmschleife kommt damit nicht klar.
 Bei Skripten gilt dies wiederum nicht, da sie lediglich kopiert werden.
