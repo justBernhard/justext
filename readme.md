@@ -3,7 +3,7 @@
 
 ## Just another Tool, um Textschnipsel in die Windows-Zwischenablage zu kopieren
 
-Textschnipsel-Tools gibt es viele. Mein Favorit ist [Beeftext](https://beeftext.org/). Plattformübergreifend ist [expanso](https://espanso.org/) stark.
+Textschnipsel-Tools gibt es viele. Mein Favorit ist [Beeftext](https://beeftext.org/). Plattformübergreifend ist [expanso](https://espanso.org/) stark und sehr vielseitig.
 Doch keines der Tools funktioniert in Umgebungen, in denen die Ausführung von Fremd-Software durch technische Schutzmechanismen ([Software Restrictions Policies](https://learn.microsoft.com/de-de/windows-server/identity/software-restriction-policies/administer-software-restriction-policies)) verhindert wird.
 
 
@@ -85,11 +85,14 @@ Im Gegensatz zum Ordner "GruppenTexte" sind das die persönliche Skripte.
 
 ## Bekannte Probleme
 
-Sonderzeichen funtionieren nicht - aus ä wird ├ñ, ö Â und ü ├╝.
-Die clip.exe funktioniert auf der Windows-Kommandozeile. Dort gilt ein anderer, einfacherer Zeichensatz ohne Sonderzeichen.
-Das ist sicher die größte Einschränkung. In manchen Fällen hilft ein Blick auf https://www.openthesaurus.de/ um Wörter ohne Umlaute zu finden.
+### Sonderzeichen funtionieren nicht
 
-Das Umlautproblem ließe sich mittels Powershell lösen:
+Sonderzeichen werden falsch übergeben, aus ä wird ├ñ, ö Â und ü ├╝.
+Die clip.exe funktioniert auf der Windows-Kommandozeile. Dort gilt ein anderer, einfacherer Zeichensatz ohne Sonderzeichen.
+Das ist sicher die größte Einschränkung, die mir lang nicht auffiel, weil ich in englischsprachigem Kontext arbeitete.
+In manchen Fällen hilft aber auch [OpenThesaurus](https://www.openthesaurus.de), um Wörter ohne Umlaute zu finden.
+
+Mit  Powershell ließe sich das Umlautproblem lösen:
 ```powershell
 # Holen Sie den Skriptpfad
 $scriptPath = $MyInvocation.MyCommand.Path
@@ -107,22 +110,21 @@ Set-Clipboard -Value $text
 
 Doch ein Powershell-Skript lässt sich nicht einfach mittels Doppelklick starten. Damit ist die Usability dahin.
 
+### Leerzeichen im Dateinamen von Textdateien funktionieren nicht
+
 Leerzeichen im Dateinamen von Textdateien (GruppenTexte und MeineTexte) funktionieren nicht - die Programmschleife kommt damit nicht klar.
 Bei Skripten gilt dies wiederum nicht, da sie lediglich kopiert werden.
 Mit Dateien ohne Leerzeichen macht man alles richtig.
 
 ## Changelog
 
-28.05.2024 erstellt werden ini Dateien, damit kein doppelten txt Dateien vorkommen, die User verwirren könnten.  
-29.05.2024 Dateien in "%USERPROFILE%\\Documents#justxt" werden irgendwie nicht gefunden. Statt dessen wird OneDrive genutzt. Verwirrend.  
-30.05.2024 Auch in OneDrive wird nix gefunden. Also bleibt doch alles in dem Verzeichnis.  
-04.06.2024 statt .dat statt .ini, weil die Ikone dann komplett weiß ist und .cmd besser heraussticht ist.  
-05.06.2024 die .dat werden versteckt  
-17.06.2024 nach einigen Tagen Test verabschiede ich mich von der Idee die Datenamen mit "#" zu beginnen und die Dateien dann über das Startmenü und "#" schnell finden zu können. Es hat einfach nicht so funktioniert. Somit lässt sich die Idee, darüber so eine Art Schnellzugriff auf einzelne Textschnipsel zu erschaffen, nicht umsetzen.  
-12.12.2024 Laut "clip /?" kann Text mittels "clip < text.txt" in die Zwischenablage kopiert werden. Der kleine Umweg über "type %0|clip" kann damit entfallen.  
-30.01.2025 Neu ist der Ordner GruppenSkripte, in dem Organisationen Skripte zur Verfügung stellen können.  
-07.02.2025 Neu ist der Ordner BeispielSkripte, in dem verschiedene Beispiele enthalten sind.  
-07.02.2025 Neu ist je eine Setupdatei, die eine Verknüpfung ins Startmenü oder in den Autostart Ordner des angemeldeten Users kopiert.  
-14.02.2025 Neue Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in .ini Dateien verarbeitet werden.  
-25.02.2025 Beispiele überarbeitet  
-10.03.2025 Lösungsansatz mittels Powershell eingefügt  
+28.05.2024 Änderung: Die .txt Dateien werden in .ini Dateien kopiert. Diese werden normalerweise nicht angezeigt, so dass im #justext lediglich die Textschnipsel Skripte angezeigt werden.
+04.06.2024 Änderung: Die .txt Dateien werden in .dat Dateien kopiert. Die Ikone von .dat ist komplett weiß und es wird deutlicher, dass die .cmd Dateien die relevanten sind.
+05.06.2024 Änderung: Die .dat werden versteckt. Damit gibt es gar keine Verwirrung mehr.
+12.12.2024 Änderung: Laut "clip /?" kann Text mittels "clip < text.txt" in die Zwischenablage kopiert werden. Der kleine Umweg über "type %0|clip" kann damit entfallen.  
+30.01.2025 Neu: Der Ordner GruppenSkripte, in dem Organisationen Skripte zur Verfügung stellen können.  
+07.02.2025 Neu: Der Ordner BeispielSkripte, in dem verschiedene Beispiele enthalten sind.  
+07.02.2025 Neu: Je eine Setupdatei, die eine Verknüpfung ins Startmenü oder in den Autostart Ordner des angemeldeten Users kopiert.  
+14.02.2025 Neu: Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in .ini Dateien verarbeitet werden.  
+25.02.2025 Änderung:Beispiele überarbeitet  
+10.03.2025 Neu: Lösungsansatz mittels Powershell eingefügt  
