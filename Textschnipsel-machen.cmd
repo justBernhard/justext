@@ -1,5 +1,5 @@
 @echo off
-chcp 65001 >NUL
+chcp 1252>nul
 setlocal
 
 color 2e
