@@ -3,7 +3,7 @@
 ## just another Tool, um Textschnipsel in die Windows-Zwischenablage zu kopieren
 
 Textschnipsel-Tools gibt es viele. Mein Favorit unter Windows ist [Beeftext](https://beeftext.org/), plattformübergreifend ist [expanso](https://espanso.org/) stark.
-Doch keines der Tools funktioniert in Umgebungen, in denen die Ausführung von Fremd-Software durch technische Schutzmechanismen ([Software Restrictions Policies](https://learn.microsoft.com/de-de/windows-server/identity/software-restriction-policies/administer-software-restriction-policies)) verhindert wird. Das ist z. B. bei vielen Kundenprojekten so, in denen ich eingesetzt bin.
+Doch keines der Tools funktioniert in Umgebungen, in denen die Ausführung von Fremd-Software durch organisatorische oder erst recht technische Schutzmechanismen ([Software Restrictions Policies](https://learn.microsoft.com/de-de/windows-server/identity/software-restriction-policies/administer-software-restriction-policies)) verhindert wird. Das ist in vielen Kundenprojekten so, in denen ich arbeite.
 
 ### Einsatzzweck
 
@@ -69,9 +69,10 @@ Diese Textschnipsel sind für mehrere Benutzer gleich, z.B. die eMail vom Gruppe
 
 ### Datei "\_justext.template"
 
-Diese Datei enthält lediglich eine Zeile Code:
+Diese Datei enthält zwei Zeilen Code:
 
 ```cmd
+@chcp 65001 > nul
 @clip < "%~dpn0.dat"
 ```
 
@@ -128,40 +129,14 @@ Beim ersten Aufruf kann diese Funktion grundsätzlich eingeschaltet werden.
 
 ## Bekannte Probleme
 
-### Sonderzeichen funktionieren nicht
-
-Aus ä wird ├ñ, ö Â und ü ├╝. Die clip.exe funktioniert auf der Windows-Kommandozeile. Dort gilt ein anderer, einfacherer Zeichensatz ohne Sonderzeichen. Das ist sicher die größte Einschränkung. In manchen Fällen hilft ein Blick auf [openthesaurus.de](https://www.openthesaurus.de/) um Wörter ohne Umlaute zu finden. Mir fiel das lange Zeit nicht auf, da ich **justext** während eines englischsprachigen Projekts entwickelte.
-
-#### Das Umlautproblem ließe sich mittels PowerShell lösen
-
-```PowerShell
-# Holen Sie den Skriptpfad 
-$scriptPath = $MyInvocation.MyCommand.Path
-
-# Extrahieren Sie den Verzeichnispfad
-$directoryPath = \[System.IO.Path\]::GetDirectoryName($scriptPath)
-
-# Extrahieren Sie den Dateinamen ohne Erweiterung
-$scriptNameWithoutExtension = \[System.IO.Path\]::GetFileNameWithoutExtension($scriptPath)
-
-# Pfad zur zum Skript gehörenden Textdatei
-$filePath = "$directoryPath$scriptNameWithoutExtension.txt"
-
-# Textdatei einlesen
-$text = Get-Content -Path $filePath -Encoding String
-
-# Kopieren des Inhalts in die Zwischenablage
-Set-Clipboard -Value $text\`
-```
-
-Doch ein PowerShell-Skript lässt sich nicht einfach mittels Doppelklick starten. Da wäre die Usability dahin.
-
 ### Leerzeichen im Dateinamen von Textdateien funktionieren nicht
 
 Die Programmschleife kommt damit nicht klar. Bei Skripten gilt dies wiederum nicht, da sie lediglich kopiert werden. Mit Dateien ohne Leerzeichen macht man alles richtig.
 
 ## Changelog
 
+- 0.3.0 - 26.06.2025
+  - Nun können auch Sonderzeichen verarbeitet werden.
 - 0.2.1 - 16.06.2025
   - Readme erweitert
 - 0.2.0 - 22.04.2025
