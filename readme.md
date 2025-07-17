@@ -7,7 +7,7 @@ Doch keines der Tools funktioniert in Umgebungen, in denen die Ausführung von F
 
 ### Einsatzzweck
 
-Der Einsatzzweck von **justext** sind Situationen, in denen dieselben Phrasen wieder und wieder z.B. eingefügt werden müssen. Das sind Texte wie:  "Moin, bezüglich des Themas blablub würde ich gern mit Ihnen sprechen. Wann passt es Ihnen?" oder "Kunde telefonisch nicht erreicht, Nachricht mit Bitte um Rückruf geschrieben." oder "Anleitung für den Antrag zur Erteilung eines Antragformulars zur Bestätigung der Nichtigkeit des Durchschriftexpemplars" oder, oder, oder.
+Der Einsatzzweck von **justext** sind Situationen, in denen dieselben Phrasen wieder und wieder eingefügt werden müssen. Das sind Texte wie:  "Moin, bezüglich des Themas blablub würde ich gern mit Ihnen sprechen. Wann passt es Ihnen?" oder "Kunde telefonisch nicht erreicht, Nachricht mit Bitte um Rückruf geschrieben." oder "Anleitung für den Antrag zur Erteilung eines Antragformulars zur Bestätigung der Nichtigkeit des Durchschriftexpemplars" oder, oder, oder.
 
 Natürlich bieten manche Programme direkt Möglichkeiten solche Phrasen/Textbausteine einzufügen. Doch alle funktionieren anders und in vielen Programmen gibt es einfach keine Möglichkeit dafür. Menschen, die täglich zigmal dasselbe schreiben müssen, helfen sich dann oft mit Abkürzungen: "Kd tne, RR!" oder "tel m Kd, KB08154711", was dann nur Eingeweihte verstehen.
 
