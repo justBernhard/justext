@@ -15,7 +15,7 @@ Teamübergreifend gibt es oft das eine Dokument mit den aktuellen Textschnipseln
 
 **justext** einfach zu konfigurieren, Textschnipsel können einfach als Textdatei gespeichert werden und über einen (stets geöffneten) Ordner werden die Textschnipsel per Doppelklick in die Zwischenablage kopiert.
 
-Klar, eigentlich sollten gerade Programme, in denen viel dokumentiert wird, Möglichkeiten bieten Textbausteine einfach definieren und schnell einfügen zu können. Nach meiner Erfahrung ist dies selten der Fall. Darum erstellte ich für mich **justext** und ich kann mir vorstellen, dass es anderen ebenfalls hilft.
+Klar, eigentlich sollten gerade Programme, in denen viel dokumentiert wird, Möglichkeiten bieten, Textbausteine einfach definieren und schnell einfügen zu können. Nach meiner Erfahrung ist dies selten der Fall. Darum erstellte ich für mich **justext** und ich kann mir vorstellen, dass es anderen ebenfalls hilft.
 
 ## Funktionsweise
 
@@ -52,8 +52,8 @@ Textschnipsel-machen.cmd
 
 ### Ordner "#justext"
 
-In diesem Ordner werden die fertigen Textschnipsel bereitgestellt. Beim Doppelklick auf eine der Textschnipsel-Dateien wird der jeweilige Inhalt in die Zwischenablage kopiert.
-In diesem Ordner liegen ebenfalls .dat-Dateien, die den zu kopierenden Text enthalten. Diese .dat-Dateien werden versteckt, sodass sie in der Ansicht nicht stören.
+In diesem Ordner werden die fertigen Textschnipsel als ausführbares Skript bereitgestellt. Beim Doppelklick auf eine der Textschnipsel-Dateien wird der jeweilige Inhalt der namensgleichen .dat Datei in die Zwischenablage kopiert.
+Die .dat-Dateien werden versteckt, sodass sie in der Ansicht nicht stören.
 
 ### Ordner "eigeneTexte"
 
@@ -63,9 +63,9 @@ Eigene Skripte müssen die Endung ".cmd" haben und sie können Variablen aus ".i
 
 Mögliche Endungen: .txt, .cmd, .ini
 
-### Ordner "gemeinsameTexte"
+### Ordner "BeispielTexte"
 
-Diese Textschnipsel sind für mehrere Benutzer gleich, z.B. die eMail vom Gruppenpostfach oder Phrasen, die alle verwenden sollten. Die aktuellen Gruppentexte könnten z.B. mittels Verteilskripten in die jeweiligen Benutzerverzeichnisse kopiert werden. Der Ordner "eigeneTexte" bleibt davon unberührt.
+Hier finden sich dokumentierte Beispiele.
 
 ### Datei "\_justext.template"
 
@@ -75,25 +75,28 @@ Diese Datei enthält zwei Zeilen Code:
 @chcp 65001 > nul
 @clip < "%~dpn0.dat"
 ```
+chcp sorgt dafür, dass Sonderzeichen verarbeitet werden können.
+Mittels clip wird der Inhalt der ".dat"-Datei in die Zwischenablage kopiert.
 
-### Datei "Textschnipsel-machen.cmd"
+### Datei "Textschnipsel-backen.cmd"
 
 Mittels dieses Skripts werden aus den ".txt"- und ".cmd"-Dateien die Textschnipsel-Skript-Dateien im Ordner "#justext" erstellt. 
 
-Im ersten Teil des Skripts werden eigene Skripte ".cmd" und ".ini"-Dateien lediglich in den Ordner "#justext" kopiert. Anschließend werden die ".ini"-Dateien versteckt, sodass lediglich die ".cmd"-Dateien sichtbar sind.
+Zunächst wird der Ordner "#justext" gelöscht und neu angelegt, um einen sauberen Stand zu haben.
+
+Dann gehen zwei in einander verschachtelte Schleifen erst alle Ordner durch, die auf "Texte" enden. In den jeweiligen Ordnern kommt die zweite Schleife zum Einsatz, die alle ".txt" Dateien in dem aktuellen Ordner bearbeitet.
+Dort geschieht die Magie: Zunächst wird die Datei "\_justext.template" in den Ordner "#justext" kopiert. Jedoch wird der Dateiname gleich dem Namen der ".txt"-Datei gesetzt.
+Gibt es z. B. eine Datei namens "toll.txt", wird die Datei "\_justext.template" als "toll.cmd" in in den Ordner "#justext" kopiert. Diese "toll.cmd" wird dann später ausgeführt.
+Die "toll.cmd" benötigt jedoch eine namensgleiche ".dat"-Datei, die den Text enthält, der in die Zwischenablage kopiert werden soll. Dies wird in der nächsten Zeile des Codes erledigt, sprich die ".txt"-Datei wird als ".dat"-Datei in den Ordner "#justext" kopiert und später versteckt, damit hier lediglich die ausführbaren ".cmd"-Dateien angezeigt werden.
+Der Paramter "delims=" sorgt dafür, dass die ".txt" Dateien Leerzeichen enthalten können.
 
 ```cmd
-copy .\Beispiele\*.cmd .\#justext\ /y|find "cmd"
-copy .\Beispiele\*.ini .\#justext\ /y
-attrib +h ".\#justext\*.ini" > nul
-```
-Im zweiten Teil geschieht die Magie: Zunächst wird die Datei "\_justext.template" in den Ordner "#justext" kopiert. Jedoch wird der Dateiname gleich dem Namen der ".txt"-Datei gesetzt. Gibt es z. B. eine Datei namens "toll.txt", wird die Datei "\_justext.template" als "toll.cmd" in in den Ordner "#justext" kopiert. Diese "toll.cmd" wird dann später ausgeführt.
-Die "toll.cmd" benötigt jedoch eine ".dat"-Datei, die den Text enthält, der in die Zwischenablage kopiert werden soll. Dies wird in der nächsten Zeile des Codes erledigt, sprich die ".txt"-Datei wird als ".dat"-Datei in den Ordner "#justext" kopiert und im nächsten Schritt versteckt, damit auch hier lediglich die ausführbaren ".cmd"-Dateien angezeigt werden.
+for /f "delims=" %%f in ('dir %%d\*.txt /b') do (
+	echo "%%~nf"
+	copy "_justext.template" "#justext\%%~nf.cmd" /y > nul 2>&1
+	copy "%%d\%%~nf.txt" "#justext\%%~nf.dat" /y > nul 2>&1
+)
 
-```cmd
-copy "_justext.template" ".\#justext\%%~nf.cmd" /y > nul
-copy   ".\gemeinsameTexte\%%~nf.txt" ".\#justext\%%~nf.dat" /y > nul
-attrib +h ".\#justext\%%~nf.dat" > nul
 ```
 ## eigene Textschnipsel-Skripte
 
@@ -127,21 +130,26 @@ Mittels der Funktion "Zwischenablageverlauf", die ab Windows 10 dabei ist, lasse
 Aufgerufen wird der "Zwischenablageverlauf" über die Tastenkombi "Windows-v".  
 Beim ersten Aufruf kann diese Funktion grundsätzlich eingeschaltet werden.
 
+Seit Version 0.4.0 ist es möglich eigene Ordner zu erstellen. So kann man verschiedene Themengebiete leicht trennen.
+Da im Ordner #justext jedoch alle Textschnipsel zusammengeführt werden, kann es übersichtlicher sein, wenn die Textschnipsel-Dateien mit einer bestimmten Zeichenfolge beginnen (z. B. "INC", für Textschnipsel, die mit Tickets zu tun haben oder "BR" wenn es um Betriebsratsthemen geht).
+
 ## Bekannte Probleme
 
-### Leerzeichen im Dateinamen von Textdateien funktionieren nicht
-
-Die Programmschleife kommt damit nicht klar. Bei Skripten gilt dies wiederum nicht, da sie lediglich kopiert werden. Mit Dateien ohne Leerzeichen macht man alles richtig.
+### keine mehr :)
 
 ## Changelog
 
+- 0.4.0 - 05.09.2025 (Happy Onam)
+  - Dateinamen können nun Leerzeichen enthalten.
+	- Es werden nun alle Ordner verarbeitet, die auf "Texte" oder "texte" (case insensitive) enden.
+	- Es können andere an anderen Orten durch einen Eintrag in der Textschnipsel-Ordner.ini mit einbezogen werden.
 - 0.3.0 - 26.06.2025
-  - Nun können auch Sonderzeichen verarbeitet werden.
+  - Sonderzeichen (z. B. Umlaute) können nun verarbeitet werden.
 - 0.2.1 - 16.06.2025
   - Readme erweitert
 - 0.2.0 - 22.04.2025
   - Redesign "Textschnipsel-machen.cmd"
 - 0.1.0 - 19.03.2025 Initiale Version
   - 10.03.2025 Lösungsansatz mittels PowerShell eingefügt.
-  - 14.02.2025 Neue Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in ".ini"-Dateien verarbeitet werden.
+  - 14.02.2025 Neue Farbe :) Viele kleine Verbesserungen, bei Skripten können Variablen in ".ini"-Dateien genutzt werden.
   - 07.02.2025 Neu ist je eine Setupdatei, die eine Verknüpfung ins Startmenü oder in den Autostart Ordner des angemeldeten Users kopiert.

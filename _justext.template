@@ -1,2 +1,1 @@
-@chcp 65001 > nul
-@clip < "%~dpn0.dat"
+@chcp 65001 & clip < "%~dpn0.dat"

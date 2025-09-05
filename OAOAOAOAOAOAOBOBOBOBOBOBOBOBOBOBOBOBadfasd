@@ -1,0 +1,387 @@
+warning: in the working copy of 'LICENSE', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Setup/Setup-Autostart.cmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Setup/Setup-Startmenu.cmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '_justext.template', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eigeneTexte/INC Wann kann ich mir das ankieken.cmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'eigeneTexte/INC When can I ankieken that.cmd', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'readme.md', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/Setup/Setup-Autostart.cmd b/Setup/Setup-Autostart.cmd[m
+[1mindex 21b857e..7822879 100644[m
+[1m--- a/Setup/Setup-Autostart.cmd[m
+[1m+++ b/Setup/Setup-Autostart.cmd[m
+[36m@@ -1,10 +1,10 @@[m
+ @echo off[m
+[31m-chcp 1252>nul[m
+[32m+[m
+ rem 07.02.2025, Bernhard Just, kopiert die justext.lnk in den Autostart Ordner des aktuellen Users.[m
+ [m
+ echo.[m
+[31m-echo %~n0 kopiert die Verknüpfung zu #justext in den Autostart Ordner aktuellen Users (%USERNAME%)[m
+[31m-echo Über diese Verknüpfung wird der Ordner mit den Textschnipsel-Skripten beim Start von Windows aufgerufen.[m
+[32m+[m[32mecho %~n0 kopiert die Verknuepfung zu #justext in den Autostart Ordner aktuellen Users (%USERNAME%)[m
+[32m+[m[32mecho Ueber diese Verknuepfung wird der Ordner mit den Textschnipsel-Skripten beim Start von Windows aufgerufen.[m
+ echo Kopiert wird nach der Pause.[m
+ pause[m
+ [m
+[1mdiff --git a/Setup/Setup-Startmenu.cmd b/Setup/Setup-Startmenu.cmd[m
+[1mindex 6b32dda..ce75527 100644[m
+[1m--- a/Setup/Setup-Startmenu.cmd[m
+[1m+++ b/Setup/Setup-Startmenu.cmd[m
+[36m@@ -1,10 +1,10 @@[m
+ @echo off[m
+[31m-chcp 1252>nul[m
+[32m+[m
+ rem 07.02.2025, Bernhard Just, kopiert die justext.lnk ins Startmenü des aktuellen Users.[m
+ [m
+ echo.[m
+[31m-echo %~n0 kopiert die Verknüpfung zu #justext ins Startmenü des aktuellen Users (%USERNAME%)[m
+[31m-echo Über diese Verknüpfung wird der Ordner mit den Textschnipsel-Skripten aufgerufen.[m
+[32m+[m[32mecho %~n0 kopiert die Verknuepfung zu #justext ins Startmenue des aktuellen Users (%USERNAME%)[m
+[32m+[m[32mecho Ueber diese Verknuepfung wird der Ordner mit den Textschnipsel-Skripten aufgerufen.[m
+ echo Kopiert wird nach der Pause.[m
+ pause[m
+ [m
+[1mdiff --git a/Textschnipsel-machen.cmd b/Textschnipsel-machen.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 3d27e01..0000000[m
+[1m--- a/Textschnipsel-machen.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,50 +0,0 @@[m
+[31m-@echo off[m
+[31m-chcp 1252>nul[m
+[31m-setlocal[m
+[31m-[m
+[31m-color 2e[m
+[31m-[m
+[31m-rem Löschen und Neuanlage der bisherigen Skripte[m
+[31m-rd .\#justext /q /s[m
+[31m-md .\#justext 2>nul[m
+[31m-[m
+[31m-[m
+[31m-title Die Textschnipsel-Skripte werden erstellt ...[m
+[31m-[m
+[31m-[m
+[31m-echo gemeinsameTexte werden verarbeitet[m
+[31m-copy .\gemeinsameTexte\*.cmd .\#justext\ /y|find "cmd"[m
+[31m-copy .\gemeinsameTexte\*.ini .\#justext\ /y[m
+[31m-attrib +h ".\#justext\*.ini" > nul[m
+[31m-echo.[m
+[31m-[m
+[31m-for /f %%f in ([m
+[31m-'dir .\gemeinsameTexte\*.txt /b'[m
+[31m-) do ([m
+[31m-echo .\gemeinsameTexte\%%~nf.cmd[m
+[31m-copy "_justext.template" ".\#justext\%%~nf.cmd" /y > nul[m
+[31m-copy   ".\gemeinsameTexte\%%~nf.txt" ".\#justext\%%~nf.dat" /y > nul[m
+[31m-attrib +h ".\#justext\%%~nf.dat" > nul[m
+[31m-)[m
+[31m-echo.[m
+[31m-[m
+[31m-[m
+[31m-echo eigeneTexte werden verarbeitet[m
+[31m-copy .\eigeneTexte\*.cmd .\#justext\ /y|find "cmd"[m
+[31m-copy .\eigeneTexte\*.ini .\#justext\ /y[m
+[31m-attrib +h ".\#justext\*.ini" > nul[m
+[31m-echo.[m
+[31m-[m
+[31m-for /f %%f in ([m
+[31m-'dir .\eigeneTexte\*.txt /b'[m
+[31m-) do ([m
+[31m-echo .\eigeneTexte\%%~nf.cmd[m
+[31m-copy "_justext.template" ".\#justext\%%~nf.cmd" /y > nul[m
+[31m-copy   ".\eigeneTexte\%%~nf.txt" ".\#justext\%%~nf.dat" /y > nul[m
+[31m-attrib +h ".\#justext\%%~nf.dat" > nul[m
+[31m-)[m
+[31m-echo.[m
+[31m-[m
+[31m-[m
+[31m-echo Just done![m
+[31m-timeout 3[m
+[1mdiff --git a/_justext.template b/_justext.template[m
+[1mindex 41479a1..b8e71c2 100644[m
+[1m--- a/_justext.template[m
+[1m+++ b/_justext.template[m
+[36m@@ -1,2 +1 @@[m
+[31m-@chcp 65001 > nul[m
+[31m-@clip < "%~dpn0.dat"[m
+[32m+[m[32m@chcp 65001 & clip < "%~dpn0.dat"[m
+[1mdiff --git a/eigeneTexte/Beispiel-Variable-im-Textfile.cmd b/eigeneTexte/Beispiel-Variable-im-Textfile.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex ae30950..0000000[m
+[1m--- a/eigeneTexte/Beispiel-Variable-im-Textfile.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,17 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Das is ein tolles Beispiel mit einer ausgelagerten Variablen.[m
+[31m-rem Die .ini Datei muss denselben Namen haben, wie das Skript. Nur die Erweiterung muss natürlich ".ini" sein.[m
+[31m-echo.[m
+[31m-[m
+[31m-rem Einlesen der Variable "ich" aus der .ini[m
+[31m-rem Der Teil "%~n0" wird aufgelöst zu dem Dateinamen (ohne Erweiterung).[m
+[31m-set /p ich=<"%~n0.ini"[m
+[31m-[m
+[31m-rem Abfrage der Variablen "du" per Eingabe[m
+[31m-set /p du="Wie bist Du? "[m
+[31m-[m
+[31m-echo Moin, ich bin %ich% und du bist %du%.|clip[m
+\ No newline at end of file[m
+[1mdiff --git a/eigeneTexte/Beispiel-Variable-im-Textfile.ini b/eigeneTexte/Beispiel-Variable-im-Textfile.ini[m
+[1mdeleted file mode 100644[m
+[1mindex 7b09238..0000000[m
+[1m--- a/eigeneTexte/Beispiel-Variable-im-Textfile.ini[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-toll[m
+\ No newline at end of file[m
+[1mdiff --git a/eigeneTexte/Beispiel-eM-nobody@example.com.txt b/eigeneTexte/Beispiel-eM-nobody@example.com.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 7c77161..0000000[m
+[1m--- a/eigeneTexte/Beispiel-eM-nobody@example.com.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-nobody@example.com[m
+\ No newline at end of file[m
+[1mdiff --git a/eigeneTexte/Regards-ich-OSS.cmd b/eigeneTexte/Regards-ich-OSS.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex f04ac61..0000000[m
+[1m--- a/eigeneTexte/Regards-ich-OSS.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,6 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-[m
+[31m-set /p ich=<ich.ini[m
+[31m-[m
+[31m-echo Regards, %ich%, Onsite Support|clip[m
+[1mdiff --git a/gemeinsameTexte/.keep b/gemeinsameTexte/.keep[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git "a/gemeinsameTexte/Beispiel-Datum-Zeit-mit-f\303\274hrender-Null.cmd" "b/gemeinsameTexte/Beispiel-Datum-Zeit-mit-f\303\274hrender-Null.cmd"[m
+[1mdeleted file mode 100644[m
+[1mindex 2bbde1a..0000000[m
+[1m--- "a/gemeinsameTexte/Beispiel-Datum-Zeit-mit-f\303\274hrender-Null.cmd"[m
+[1m+++ /dev/null[m
+[36m@@ -1,6 +0,0 @@[m
+[31m-@echo off[m
+[31m-set zeit=%time:~0,5%[m
+[31m-rem so kommt die führende 0 dazu[m
+[31m-rem https://www.ugg.li/windows-batch-uhrzeit-und-datum-verwenden-mit-fuehrender-0-bei-einstelligen-stunden/[m
+[31m-if "%zeit:~0,1%" == " " SET zeit=0%zeit:~1,5%[m
+[31m-echo %date% %zeit% |clip[m
+\ No newline at end of file[m
+[1mdiff --git "a/gemeinsameTexte/Beispiel-Datum-r\303\274ckw\303\244rts.cmd" "b/gemeinsameTexte/Beispiel-Datum-r\303\274ckw\303\244rts.cmd"[m
+[1mdeleted file mode 100644[m
+[1mindex e14b2d3..0000000[m
+[1m--- "a/gemeinsameTexte/Beispiel-Datum-r\303\274ckw\303\244rts.cmd"[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-@echo %date:~6,4%-%date:~3,2%-%date:~0,2%|clip[m
+[1mdiff --git a/gemeinsameTexte/Beispiel-Datum-und-Username.cmd b/gemeinsameTexte/Beispiel-Datum-und-Username.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex e4c706f..0000000[m
+[1m--- a/gemeinsameTexte/Beispiel-Datum-und-Username.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-@echo %date%, %USERNAME%: |clip[m
+[1mdiff --git a/gemeinsameTexte/Beispiel-eM-nobodies@example.com.txt b/gemeinsameTexte/Beispiel-eM-nobodies@example.com.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 7c77161..0000000[m
+[1m--- a/gemeinsameTexte/Beispiel-eM-nobodies@example.com.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-nobody@example.com[m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/Beispiel-mit-Eingabe.cmd b/gemeinsameTexte/Beispiel-mit-Eingabe.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 6e7f497..0000000[m
+[1m--- a/gemeinsameTexte/Beispiel-mit-Eingabe.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Das is ein tolles Beispiel mit einer tollen Eingabe.[m
+[31m-echo.[m
+[31m-[m
+[31m-rem Abfrage der Variablen "bla" per Eingabe[m
+[31m-set /p bla="Was ist Deine Lieblingsfarbe? "[m
+[31m-[m
+[31m-echo Meine Lieblingsfarbe ist %bla%|clip[m
+[1mdiff --git a/gemeinsameTexte/Beispiel-open-Autostart.cmd b/gemeinsameTexte/Beispiel-open-Autostart.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex d0dc834..0000000[m
+[1m--- a/gemeinsameTexte/Beispiel-open-Autostart.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-@start %SystemRoot%\EXPLORER.EXE /E, shell:Startup[m
+[1mdiff --git a/gemeinsameTexte/Beispiel-open-StartMenu.cmd b/gemeinsameTexte/Beispiel-open-StartMenu.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex e7500f7..0000000[m
+[1m--- a/gemeinsameTexte/Beispiel-open-StartMenu.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-@start %SystemRoot%\EXPLORER.EXE /E, shell:Start Menu[m
+[1mdiff --git a/gemeinsameTexte/INC Conversation with customer bla.cmd b/gemeinsameTexte/INC Conversation with customer bla.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex ee8ae67..0000000[m
+[1m--- a/gemeinsameTexte/INC Conversation with customer bla.cmd[m	
+[1m+++ /dev/null[m
+[36m@@ -1,13 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Zur Dokumentation einer Kundenkommunikation im Tickettool[m
+[31m-echo.[m
+[31m-[m
+[31m-echo INC Conversation with customer ...[m
+[31m-echo.[m
+[31m-set /p bla="Was war das Thema unserer Konversation? "[m
+[31m-[m
+[31m-echo Conversation with customer ... %bla%|clip[m
+[1mdiff --git a/gemeinsameTexte/INC Customer will be back on Datum.cmd b/gemeinsameTexte/INC Customer will be back on Datum.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 90723b9..0000000[m
+[1m--- a/gemeinsameTexte/INC Customer will be back on Datum.cmd[m	
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Zur Dokumenation im Tickettool wann ein Kunde wiederkehrt.[m
+[31m-echo.[m
+[31m-[m
+[31m-set /p bla="Customer will be back on Tag.Monat.(%date:~6,4%)? "[m
+[31m-[m
+[31m-echo Customer will be back on %bla%.%date:~6,4%|clip[m
+[1mdiff --git a/gemeinsameTexte/INC Visit on site.cmd b/gemeinsameTexte/INC Visit on site.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex c136f00..0000000[m
+[1m--- a/gemeinsameTexte/INC Visit on site.cmd[m	
+[1m+++ /dev/null[m
+[36m@@ -1,13 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Zur Dokumentation im Tickettool[m
+[31m-echo.[m
+[31m-[m
+[31m-echo INC Visit on site...[m
+[31m-echo.[m
+[31m-set /p bla="was wurde beim Besuch vor Ort getan? "[m
+[31m-[m
+[31m-echo Visit on site: %bla%|clip[m
+[1mdiff --git a/gemeinsameTexte/INC doppeltes Ticket wird geclosed.cmd b/gemeinsameTexte/INC doppeltes Ticket wird geclosed.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex 4047ee7..0000000[m
+[1m--- a/gemeinsameTexte/INC doppeltes Ticket wird geclosed.cmd[m	
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo Mehrfach erstelltes Ticket. Dieses Ticket wird daher geschlossen und der Fall in INC1234567 bearbeitet. [m
+[31m-echo.[m
+[31m-[m
+[31m-set /p bla="In welchem Ticket wird das Thema weiterbehandelt? "[m
+[31m-[m
+[31m-echo Ticket created multiple times. This ticket will be therefore closed and the incident is processed in %bla%|clip[m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/INC-@FrontDesk-Please-clarify-which-person-is-affected.txt b/gemeinsameTexte/INC-@FrontDesk-Please-clarify-which-person-is-affected.txt[m
+[1mdeleted file mode 100644[m
+[1mindex f94478d..0000000[m
+[1m--- a/gemeinsameTexte/INC-@FrontDesk-Please-clarify-which-person-is-affected.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-Dear great colleagues :)[m
+[31m-Please clarify which person (first and last name) is affected or which person can be contacted. Thank you![m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/INC-Waiting-for-customer.txt b/gemeinsameTexte/INC-Waiting-for-customer.txt[m
+[1mdeleted file mode 100644[m
+[1mindex 7f3ea5b..0000000[m
+[1m--- a/gemeinsameTexte/INC-Waiting-for-customer.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-Waiting for contact person.[m
+[31m-Warten auf Ansprechperson.[m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/INC-asked-Customer-for-OSS.txt b/gemeinsameTexte/INC-asked-Customer-for-OSS.txt[m
+[1mdeleted file mode 100644[m
+[1mindex fe94fd6..0000000[m
+[1m--- a/gemeinsameTexte/INC-asked-Customer-for-OSS.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m-Asked the customer for an appointment for an onsite visit.[m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/INC-tritt-nicht-mehr-auf.txt b/gemeinsameTexte/INC-tritt-nicht-mehr-auf.txt[m
+[1mdeleted file mode 100644[m
+[1mindex d791f07..0000000[m
+[1m--- a/gemeinsameTexte/INC-tritt-nicht-mehr-auf.txt[m
+[1m+++ /dev/null[m
+[36m@@ -1,2 +0,0 @@[m
+[31m-The issue no longer occurs.[m
+[31m-Die Stoerung tritt nicht mehr auf.[m
+\ No newline at end of file[m
+[1mdiff --git a/gemeinsameTexte/Prrintersetup-HTTP.cmd b/gemeinsameTexte/Prrintersetup-HTTP.cmd[m
+[1mdeleted file mode 100644[m
+[1mindex cd237b8..0000000[m
+[1m--- a/gemeinsameTexte/Prrintersetup-HTTP.cmd[m
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-@echo off[m
+[31m-setlocal[m
+[31m-color 2e[m
+[31m-title %~n0[m
+[31m-echo.[m
+[31m-echo ruft die HTTP-Seite eines Druckers auf (z.B. PRN123 bzw. 1.2.3.4)[m
+[31m-echo.[m
+[31m-[m
+[31m-set /p prn="Druckername oder IP? "[m
+[31m-[m
+[31m-start http://%prn%[m
+\ No newline at end of file[m
+[1mdiff --git a/readme.md b/readme.md[m
+[1mindex 64b59eb..9a43b6c 100644[m
+[1m--- a/readme.md[m
+[1m+++ b/readme.md[m
+[36m@@ -15,7 +15,7 @@[m [mTeamübergreifend gibt es oft das eine Dokument mit den aktuellen Textschnipseln[m
+ [m
+ **justext** einfach zu konfigurieren, Textschnipsel können einfach als Textdatei gespeichert werden und über einen (stets geöffneten) Ordner werden die Textschnipsel per Doppelklick in die Zwischenablage kopiert.[m
+ [m
+[31m-Klar, eigentlich sollten gerade Programme, in denen viel dokumentiert wird, Möglichkeiten bieten Textbausteine einfach definieren und schnell einfügen zu können. Nach meiner Erfahrung ist dies selten der Fall. Darum erstellte ich für mich **justext** und ich kann mir vorstellen, dass es anderen ebenfalls hilft.[m
+[32m+[m[32mKlar, eigentlich sollten gerade Programme, in denen viel dokumentiert wird, Möglichkeiten bieten, Textbausteine einfach definieren und schnell einfügen zu können. Nach meiner Erfahrung ist dies selten der Fall. Darum erstellte ich für mich **justext** und ich kann mir vorstellen, dass es anderen ebenfalls hilft.[m
+ [m
+ ## Funktionsweise[m
+ [m
+[36m@@ -52,8 +52,8 @@[m [mTextschnipsel-machen.cmd[m
+ [m
+ ### Ordner "#justext"[m
+ [m
+[31m-In diesem Ordner werden die fertigen Textschnipsel bereitgestellt. Beim Doppelklick auf eine der Textschnipsel-Dateien wird der jeweilige Inhalt in die Zwischenablage kopiert.[m
+[31m-In diesem Ordner liegen ebenfalls .dat-Dateien, die den zu kopierenden Text enthalten. Diese .dat-Dateien werden versteckt, sodass sie in der Ansicht nicht stören.[m
+[32m+[m[32mIn diesem Ordner werden die fertigen Textschnipsel als ausführbares Skript bereitgestellt. Beim Doppelklick auf eine der Textschnipsel-Dateien wird der jeweilige Inhalt der namensgleichen .dat Datei in die Zwischenablage kopiert.[m
+[32m+[m[32mDie .dat-Dateien werden versteckt, sodass sie in der Ansicht nicht stören.[m
+ [m
+ ### Ordner "eigeneTexte"[m
+ [m
+[36m@@ -63,9 +63,9 @@[m [mEigene Skripte müssen die Endung ".cmd" haben und sie können Variablen aus ".i[m
+ [m
+ Mögliche Endungen: .txt, .cmd, .ini[m
+ [m
+[31m-### Ordner "gemeinsameTexte"[m
+[32m+[m[32m### Ordner "BeispielTexte"[m
+ [m
+[31m-Diese Textschnipsel sind für mehrere Benutzer gleich, z.B. die eMail vom Gruppenpostfach oder Phrasen, die alle verwenden sollten. Die aktuellen Gruppentexte könnten z.B. mittels Verteilskripten in die jeweiligen Benutzerverzeichnisse kopier
