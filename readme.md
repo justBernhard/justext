@@ -141,8 +141,8 @@ Da im Ordner #justext jedoch alle Textschnipsel zusammengeführt werden, kann es
 
 - 0.4.0 - 05.09.2025 (Happy Onam)
   - Dateinamen können nun Leerzeichen enthalten.
-	- Es werden nun alle Ordner verarbeitet, die auf "Texte" oder "texte" (case insensitive) enden.
-	- Es können andere an anderen Orten durch einen Eintrag in der Textschnipsel-Ordner.ini mit einbezogen werden.
+  - Es werden nun alle Ordner verarbeitet, die auf "Texte" oder "texte" (case insensitive) enden.
+  - Es können Ordner an anderen Orten durch einen Eintrag in der Textschnipsel-Ordner.ini mit einbezogen werden.
 - 0.3.0 - 26.06.2025
   - Sonderzeichen (z. B. Umlaute) können nun verarbeitet werden.
 - 0.2.1 - 16.06.2025
